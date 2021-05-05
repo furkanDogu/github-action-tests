@@ -37,6 +37,12 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
+
+      - name: log env
+        run: |
+          echo .env
+
+
       - name: Run migrations
         run: |
           npm run db:migration:up
