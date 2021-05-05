@@ -13,27 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-
-      - name: Logs secrets 
-        run: |
-          cat 
-
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: furkansuniquename
-          heroku_email: "furkandogu35@gmail.com"
-          env_file: ".env"
-
-
-      - name: Install dependencies
-        run: |
-          npm install
-
-      - name: Run tests
-        run: |
-          npm test
-
       - name: Install Heroku CLI
         run: |
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
@@ -43,6 +22,21 @@ jobs:
           heroku config -s -a ${{ secrets.HEROKU_STAGING_APP_NAME }} > .env
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: furkansuniquename
+          heroku_email: "furkandogu35@gmail.com"
+          env_file: ".env"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run tests
+        run: |
+          npm test
 
       - name: Run Build
         run: |
