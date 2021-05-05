@@ -12,7 +12,10 @@
     "start": "npm run build && node ./build/index.js",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./index.js -s"
+    "build-babel": "babel -d ./build ./index.js -s",
+    "db:migration:make": "knex migrate:make",
+    "db:migration:up": "knex migrate:latest",
+    "db:migration:down": "knex migrate:rollback"
   },
   "author": "Furkan Dogu",
   "license": "ISC",
@@ -26,6 +29,9 @@
   },
   "dependencies": {
     "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.14.0"
+    "@babel/core": "^7.14.0",
+    "dotenv": "^9.0.0",
+    "knex": "^0.95.4",
+    "pg": "^8.6.0"
   }
 }
