@@ -1,7 +1,10 @@
 require("./utils/env");
 
 const connection = process.env.DATABASE_URL
-  ? { connectionString: process.env.DATABASE_URL }
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { require: true, rejectUnauthorized: false },
+    }
   : {
       host: process.env.DATABASE_HOST,
       port: process.env.DATABASE_PORT
