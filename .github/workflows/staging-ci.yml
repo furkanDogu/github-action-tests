@@ -25,31 +25,14 @@ jobs:
         run: |
           npm test
 
-      - name: Run Build
-        run: |
-          npm run build
-        env:
-          CI: true
-
       - name: Download .env file
         run: |
           heroku config -s -a ${{ secrets.HEROKU_STAGING_APP_NAME }} > .env
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
-
-      - name: log env
-        run: |
-          cat .env
-
-
-      - name: Run migrations
-        run: |
-          npm run db:migration:up
-
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_STAGING_APP_NAME }}
           heroku_email: "furkandogu35@gmail.com"
-          env_file: ".env"
