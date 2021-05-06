@@ -3,7 +3,7 @@ import "./utils/env";
 import http from "http";
 import Knex from "knex";
 
-import knexConfig from "./knexfile";
+import knexConfig from "./db/knexfile";
 
 const knex = Knex(knexConfig);
 
